@@ -1,0 +1,31 @@
+{
+  "name": "csci401-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twang720/CSCI401-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Twang720/CSCI401-server/issues"
+  },
+  "homepage": "https://github.com/Twang720/CSCI401-server#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase": "^8.6.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
