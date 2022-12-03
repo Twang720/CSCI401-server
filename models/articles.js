@@ -1,10 +1,9 @@
 class Article {
-    constructor(id, firstName, lastName, email, password) {
+    constructor(id, title, link, tag) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
+        this.title = title;
+        this.link = link;
+        this.tag = tag;
     }
 }
 
