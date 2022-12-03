@@ -1,5 +1,5 @@
 const express = require('express');
-const {addTag, removeTag, getAllTags} = require('../controllers/tagController');
+const {addTag, removeTags, getAllTags} = require('../controllers/tagController');
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
 // Tags
 router.post('/addTag', addTag);
-router.post('/removeTag', removeTag);
+router.post('/removeTags', removeTags);
 router.post('/getAllTags', getAllTags);
 
 module.exports = {

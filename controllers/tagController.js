@@ -41,29 +41,25 @@ const addTag = async (req, res, next) => {
     }
 }
 
-const removeTag = async (req, res, next) => {
+const removeTags = async (req, res, next) => {
     try {
         // Validate Request
-        if (!req.body.tag) {
+        if (!req.body.tags) {
             res.status(400).send({
-                message: "Content must have tag name!"
+                message: "Content must have tags!"
             })
             return;
         }
 
-        var found = false;
         const tags = await firestore.collection('tags');
-        const query = await tags.where('tag', '==', req.body.tag).get();
-        query.forEach(doc => {
-            doc.ref.delete();
-            found = true;
-        });
-        if(!found) {
-            res.status(404).send('Tag doesn\'t exist');
-        }
-        else {
-            res.send("Tag removed");
-        }
+        req.body.tags.forEach(async tag => {
+            const query = await tags.where('tag', '==', tag).get();
+            query.forEach(doc => {
+                doc.ref.delete();
+            });
+        })
+        
+        res.send("Tags removed");
     }
     catch (error) {
         res.status(400).send(error.message);
@@ -90,6 +86,6 @@ const getAllTags = async (req, res, next) => {
 
 module.exports = {
     addTag,
-    removeTag,
+    removeTags,
     getAllTags,
 }
