@@ -63,20 +63,15 @@ const getAllArticles = async (req, res, next) => {
         const articles = await firestore.collection('articles');
         const data = await articles.get();
         const articleArray = [];
-        if(data.empty) {
-            res.status(404).send("No articles");
-        }
-        else {
-            data.forEach(doc => {
-                const article = {
-                    title: doc.data().title,
-                    link: doc.data().link,
-                    tag: doc.data().tag,
-                };
-                articleArray.push(article);
-            });
-            res.send(articleArray);
-        }
+        data.forEach(doc => {
+            const article = {
+                title: doc.data().title,
+                link: doc.data().link,
+                tag: doc.data().tag,
+            };
+            articleArray.push(article);
+        });
+        res.send(articleArray);
     }
     catch (error) {
         res.status(400).send(error.message);

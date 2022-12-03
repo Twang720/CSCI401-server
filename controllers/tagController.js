@@ -75,18 +75,13 @@ const getAllTags = async (req, res, next) => {
         const tags = await firestore.collection('tags');
         const data = await tags.get();
         const tagArray = [];
-        if(data.empty) {
-            res.status(404).send("No tags");
-        }
-        else {
-            data.forEach(doc => {
-                const tag = {
-                    tag: doc.data().tag,
-                };
-                tagArray.push(tag);
-            });
-            res.send(tagArray);
-        }
+        data.forEach(doc => {
+            const tag = {
+                tag: doc.data().tag,
+            };
+            tagArray.push(tag);
+        });
+        res.send(tagArray);
     }
     catch (error) {
         res.status(400).send(error.message);
