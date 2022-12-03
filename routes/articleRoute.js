@@ -9,9 +9,9 @@ router.get('/', (req, res) => {
 })
 
 // Articles
-router.get('/addArticle', addArticle);
-router.get('/removeArticle', removeArticle);
-router.get('/getAllArticles', getAllArticles);
+router.post('/addArticle', addArticle);
+router.post('/removeArticle', removeArticle);
+router.post('/getAllArticles', getAllArticles);
 
 module.exports = {
     routes: router

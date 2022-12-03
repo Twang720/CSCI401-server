@@ -9,9 +9,9 @@ router.get('/', (req, res) => {
 })
 
 // Tags
-router.get('/addTag', addTag);
-router.get('/removeTag', removeTag);
-router.get('/getAllTags', getAllTags);
+router.post('/addTag', addTag);
+router.post('/removeTag', removeTag);
+router.post('/getAllTags', getAllTags);
 
 module.exports = {
     routes: router

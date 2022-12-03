@@ -5,10 +5,11 @@ const firestore = firebase.firestore();
 const addArticle = async (req, res, next) => {
     try {
         // Validate Request
-        if (!req.body.title || !req.body.link || !req.body.tag) {
+        if (!req.body.title || !req.body.link || !req.body.tags) {
             res.status(400).send({
-                message: "Content must have title, link, and a tag!"
+                message: "Content must have title, link, and a tags!"
             })
+            console.log(req.body)
             return;
         }
         
@@ -16,9 +17,8 @@ const addArticle = async (req, res, next) => {
         const article = {
             title: req.body.title,
             link: req.body.link,
-            tag: req.body.tag,
+            tags: req.body.tags,
         };
-        console.log(article);
 
         // Add Article to db
         await firestore.collection('articles').doc().set(article);
@@ -67,7 +67,7 @@ const getAllArticles = async (req, res, next) => {
             const article = {
                 title: doc.data().title,
                 link: doc.data().link,
-                tag: doc.data().tag,
+                tags: doc.data().tags,
             };
             articleArray.push(article);
         });
