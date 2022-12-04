@@ -16,7 +16,6 @@ const addTag = async (req, res, next) => {
         const tag = {
             tag: req.body.tag,
         };
-        console.log(tag);
 
         // Check if Tag is in db
         const tags = await firestore.collection('tags');
@@ -27,14 +26,18 @@ const addTag = async (req, res, next) => {
                     tag: doc.data().name,
                 };
                 if(tag.tag == t.tag) {
-                    res.status(400).send('Tag already exists');
+                    res.status(400).send({
+                        message: "Tag already exists"
+                    });
                 }
             });
         }
 
         // Add Tag to db
         await tags.doc().set(tag);
-        res.send('Tag added successfully');
+        res.send({
+            message: "Tag added successfully"
+        });
     }
     catch (error) {
         res.status(400).send(error.message);
@@ -59,7 +62,9 @@ const removeTags = async (req, res, next) => {
             });
         })
         
-        res.send("Tags removed");
+        res.send({
+            message: "Tag removed successfully"
+        });
     }
     catch (error) {
         res.status(400).send(error.message);
