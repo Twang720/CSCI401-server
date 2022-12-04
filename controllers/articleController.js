@@ -22,7 +22,9 @@ const addArticle = async (req, res, next) => {
 
         // Add Article to db
         await firestore.collection('articles').doc().set(article);
-        res.send('Article added successfully');
+        res.send({
+            message: "Article added successfully"
+        });
     }
     catch (error) {
         res.status(400).send(error.message);
@@ -47,10 +49,14 @@ const removeArticle = async (req, res, next) => {
             found = true;
         });
         if(!found) {
-            res.status(404).send('Article doesn\'t exist');
+            res.status(404).send({
+                message: "Article doesn't exist"
+            });
         }
         else {
-            res.send("Article removed");
+            res.send({
+                message: "Article removed successfully"
+            });
         }
     }
     catch (error) {
